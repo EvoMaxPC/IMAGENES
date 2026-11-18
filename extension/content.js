@@ -55,8 +55,17 @@
       if (!raw.trim()) return;
 
       const analysis = window.PromptLabOptimizer.analyze(raw);
-      const optimized = window.PromptLabOptimizer.optimize(raw);
-      writePromptText(target, optimized);
+      if (chrome?.storage?.local) {
+        chrome.storage.local.get(["promptLabRole", "promptLabTone"], (cfg) => {
+          const optimized = window.PromptLabOptimizer.optimize(raw, {
+            role: cfg?.promptLabRole,
+            tone: cfg?.promptLabTone
+          });
+          writePromptText(target, optimized);
+        });
+      } else {
+        writePromptText(target, window.PromptLabOptimizer.optimize(raw));
+      }
 
       btn.textContent = `Optimizado (${analysis.score}/10 -> 10/10)`;
       setTimeout(() => {
