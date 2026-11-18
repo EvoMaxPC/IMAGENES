@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Prompt Lab Optimizer for ChatGPT",
+  "version": "1.0.0",
+  "description": "Analiza, estructura y optimiza tus prompts directamente dentro de ChatGPT Web usando reglas locales.",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Prompt Lab Optimizer"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+      "js": ["optimizer.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
