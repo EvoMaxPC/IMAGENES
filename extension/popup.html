@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prompt Lab Optimizer</title>
+  <style>
+    body {
+      width: 320px;
+      margin: 0;
+      padding: 16px;
+      background: #0b0f1a;
+      color: #f8fafc;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    h1 { font-size: 16px; margin: 0 0 8px; color: #60a5fa; }
+    p { font-size: 12px; color: #94a3b8; margin: 0 0 12px; }
+    label { display: block; font-size: 12px; margin-bottom: 4px; color: #cbd5e1; }
+    select, input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #1e293b;
+      background: #111827;
+      color: #f8fafc;
+      font-size: 12px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #status { font-size: 11px; color: #34d399; margin-top: 8px; min-height: 14px; }
+  </style>
+</head>
+<body>
+  <h1>Prompt Lab Optimizer</h1>
+  <p>Configura el perfil por defecto para optimizar tus prompts en ChatGPT Web.</p>
+  <label for="role">Rol predeterminado</label>
+  <input id="role" type="text" value="Arquitecto de software y mentor técnico" />
+  <label for="tone">Tono</label>
+  <select id="tone">
+    <option value="Claro, práctico y profesional">Claro, práctico y profesional</option>
+    <option value="Técnico y directo">Técnico y directo</option>
+    <option value="Didáctico paso a paso">Didáctico paso a paso</option>
+  </select>
+  <button id="save">Guardar preferencias</button>
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
