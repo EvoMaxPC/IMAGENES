@@ -2,56 +2,130 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Prompt Lab Optimizer</title>
+  <title>Prompt Lab Optimizer · EVO LABS</title>
   <style>
+    :root {
+      --bg: #080a0d;
+      --card: #15191f;
+      --text: #f5f7fa;
+      --muted: #94a3b8;
+      --yellow: #ffd400;
+      --cyan: #00d2ff;
+      --green: #10b981;
+      --border: #252c37;
+    }
     body {
-      width: 320px;
+      width: 350px;
       margin: 0;
       padding: 16px;
-      background: #0b0f1a;
-      color: #f8fafc;
+      background: var(--bg);
+      color: var(--text);
       font-family: system-ui, -apple-system, sans-serif;
     }
-    h1 { font-size: 16px; margin: 0 0 8px; color: #60a5fa; }
-    p { font-size: 12px; color: #94a3b8; margin: 0 0 12px; }
-    label { display: block; font-size: 12px; margin-bottom: 4px; color: #cbd5e1; }
-    select, input {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 { font-size: 15px; margin: 0; color: var(--text); }
+    .tag {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+    p { font-size: 12px; color: var(--muted); margin: 0 0 12px; line-height: 1.4; }
+    label { display: block; font-size: 11px; font-weight: 600; margin-bottom: 4px; color: var(--cyan); }
+    select, input, textarea {
       width: 100%;
       box-sizing: border-box;
-      padding: 8px;
+      padding: 8px 10px;
       margin-bottom: 10px;
       border-radius: 8px;
-      border: 1px solid #1e293b;
-      background: #111827;
-      color: #f8fafc;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
       font-size: 12px;
+      font-family: inherit;
     }
     button {
       width: 100%;
       padding: 10px;
       border: none;
       border-radius: 8px;
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      color: #fff;
-      font-weight: 600;
+      background: linear-gradient(135deg, #0099cc, #00d2ff);
+      color: #080a0d;
+      font-weight: 800;
+      font-size: 12px;
       cursor: pointer;
     }
-    #status { font-size: 11px; color: #34d399; margin-top: 8px; min-height: 14px; }
+    button.secondary {
+      margin-top: 8px;
+      background: var(--card);
+      color: var(--yellow);
+      border: 1px solid var(--border);
+    }
+    #status { font-size: 11px; color: var(--green); margin-top: 8px; min-height: 14px; }
+    .divider { border-top: 1px solid var(--border); margin: 12px 0; }
+    #preview {
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 8px;
+      background: #0d1117;
+      border: 1px solid var(--border);
+      font-size: 11px;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      max-height: 130px;
+      overflow-y: auto;
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <h1>Prompt Lab Optimizer</h1>
-  <p>Configura el perfil por defecto para optimizar tus prompts en ChatGPT Web.</p>
+  <div class="header">
+    <h1>Prompt Lab Optimizer</h1>
+    <span class="tag">EVO LABS</span>
+  </div>
+  <p>Configurá tu perfil local. Se inyecta directo en ChatGPT Web (0 ms · $0 API).</p>
+
   <label for="role">Rol predeterminado</label>
   <input id="role" type="text" value="Arquitecto de software y mentor técnico" />
+
   <label for="tone">Tono</label>
   <select id="tone">
     <option value="Claro, práctico y profesional">Claro, práctico y profesional</option>
     <option value="Técnico y directo">Técnico y directo</option>
     <option value="Didáctico paso a paso">Didáctico paso a paso</option>
+    <option value="Rioplatense cercano y técnico">Rioplatense cercano y técnico</option>
   </select>
+
+  <label for="format">Formato de salida</label>
+  <select id="format">
+    <option value="Lista estructurada por secciones con ejemplos accionables">Lista estructurada con ejemplos</option>
+    <option value="Paso a paso técnico numerado con código verificable">Paso a paso técnico con código</option>
+    <option value="Tabla comparativa breve con pros, contras y recomendación">Tabla comparativa ejecutiva</option>
+    <option value="Bloques de código limpios con explicación puntual debajo">Código limpio + explicación breve</option>
+  </select>
+
+  <label for="constraint">Restricción extra (opcional)</label>
+  <input id="constraint" type="text" placeholder="Ej: Máximo 200 palabras, sin analogías largas" />
+
   <button id="save">Guardar preferencias</button>
   <div id="status"></div>
+
+  <div class="divider"></div>
+  <label for="sample">Probador rápido (sin abrir ChatGPT)</label>
+  <textarea id="sample" rows="2" placeholder="Ej: explicame marketing para pymes"></textarea>
+  <button id="test" class="secondary">Probar optimización</button>
+  <pre id="preview"></pre>
+
+  <script src="optimizer.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

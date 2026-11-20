@@ -1,13 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "Prompt Lab Optimizer for ChatGPT",
-  "version": "1.0.0",
-  "description": "Analiza, estructura y optimiza tus prompts directamente dentro de ChatGPT Web usando reglas locales.",
+  "name": "Prompt Lab Optimizer for ChatGPT (EVO LABS)",
+  "version": "1.1.0",
+  "description": "Analiza, estructura y optimiza tus prompts en 5 pilares directamente dentro de ChatGPT Web sin APIs externas.",
   "permissions": ["storage", "activeTab"],
-  "host_permissions": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*"
+  ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Prompt Lab Optimizer"
+    "default_title": "Prompt Lab Optimizer · EVO LABS"
   },
   "content_scripts": [
     {
